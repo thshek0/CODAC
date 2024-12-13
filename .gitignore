@@ -9,3 +9,5 @@ risky_saved_policies
 .idea
 .vscode
 **/__pycache__
+*.out
+*.err

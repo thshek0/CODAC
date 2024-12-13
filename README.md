@@ -1,3 +1,66 @@
+# Exploring Distributional Reinforcement Learning in Offline Settings
+This is the repository for the course project CSC2626 Imitation Learning for Robotics - Fall 2024. We aim small and the objactive of this project is to explore the code and replicate the results from the paper [Conservative Distributional Offline Reinforcement Learning](https://arxiv.org/abs/2107.06106). Specifically, we aim to ask the following two questions:
+1. How does the number of quantiles affect training performance in terms of both training stability and evaluation rewards?
+2. Can the method naturally adapt to other environments without significant changes to hyperparameters?
+
+### Installations
+The experiments are conducted on CSLab compute servers with Slurm cluster. We are using Python 3.7.16 and CUDA 12.7 in anaconda virtual environment. Please refer to [original repo](https://github.com/JasonMa2016/CODAC), [Mujoco-PyTorch](https://github.com/JasonMa2016/CODAC), [D4RL](https://github.com/rail-berkeley/d4rl) for more details. To reproduce the environment, we perform the following commands:
+1. Create a conda environment
+```bash
+conda create -n codac python=3.7
+conda activate codac
+pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
+pip install tqdm
+```
+
+2. Mujoco-based Environment (PyTorch)
+```bash
+conda install -c conda-forge glew
+conda install -c conda-forge mesalib
+conda install -c anaconda mesa-libgl-cos6-x86_64
+conda install -c menpo glfw3
+
+conda env config vars set MUJOCO_GL=egl PYOPENGL_PLATFORM=egl
+conda deactivate && conda activate codac
+```
+
+```bash
+conda env config vars set MJLIB_PATH=/w/284/shekanson/.mujoco/mujoco210/bin/libmujoco210.so \
+> LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/w/284/shekanson/.mujoco/mujoco210/bin \
+> MUJOCO_PY_MUJOCO_PATH=/w/284/shekanson/.mujoco/mujoco210
+conda deactivate && conda activate codac
+```
+
+3. Install mujoco-py from a cloned repo
+```bash
+cd /w/284/shekanson/mujoco-py
+python setup.py develop
+conda env config vars set LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/nvidia
+conda deactivate && conda activate codac
+
+pip install "cython<3"
+```
+
+4. Download D4RL
+```bash
+git clone https://github.com/Farama-Foundation/d4rl.git
+cd d4rl
+pip install -e .
+```
+
+5. Wandb
+```bash
+pip install wandb
+wandb login
+```
+
+### Experiments
+
+
+------
+
+
+
 # Conservative Distributional Offline Reinforcement Learning
 
 This is the official repository for [Conservative Distributional Offline Reinforcement Learning](https://arxiv.org/abs/2107.06106).

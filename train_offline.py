@@ -31,6 +31,8 @@ def readParser():
     parser.add_argument('--actor_lr', type=float, default=0.00003)
     parser.add_argument('--risk_type', default="neutral")
     parser.add_argument('--risk_param', default=0.1)
+    parser.add_argument('--num_quantiles', type=int, default=32,
+        help='CODAC number of quantiles used')
     # risk parameters for the environment
     parser.add_argument('--risk_prob', type=float, default=0.8)
     parser.add_argument('--risk_penalty', type=float, default=200)
@@ -221,6 +223,7 @@ def main():
                       risk_type=args.risk_type, risk_param=args.risk_param,
                       dist_penalty_type=args.dist_penalty_type,
                       lagrange_thresh=args.lag,
+                      num_quantiles=args.num_quantiles,
                       use_automatic_entropy_tuning=args.entropy_tuning,
                       device=args.device)
     elif args.algo == 'cql':
